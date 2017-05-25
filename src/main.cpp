@@ -18,7 +18,7 @@ void ler(char est, char simbolo){
 	estado es = linhas[est][simbolo];
 	
 	char proxSim;
-	if(strcmp(es.direcaoMovimento, "D")==0) {
+	if(es.direcaoMovimento == 'D') {
 		proxSim = fita[++i];
 	} else {
 		proxSim = fita[--i];	
@@ -38,12 +38,13 @@ void entraDados(){
    
 	
 	do{
-		cout << "\nInforme o estado: " << endl;	
+		cout << "Informe o estado: " << endl;	
+		cout << "(Padrao: 0,A=1,A,D)" << endl;
 		cin >> dados;
 		
 		
 		if(dados.compare("0")){
-			//d.push_back(dados);              0,a=1,A,D
+			//d.push_back(dados);              0,A=1,A,D
 			
 			lin = dados[0];
 			col = dados[2];
@@ -57,14 +58,14 @@ void entraDados(){
 	}
 	while(dados.compare("0"));
 	
-	cout << "\nInforme o simbolo inicial: " << endl;	
+	cout << "Informe o simbolo inicial: " << endl;	
 	cin >> simboloIni;
 	
-	cout << "\nInforme o fita inicial: " << endl;	
+	cout << "Informe a fita: " << endl;	
 	cin >> fita;
 	
 	i = 0;
-	ler("0", simboloIni);
+	ler('0', simboloIni);
 	
 }
 
