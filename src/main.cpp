@@ -6,6 +6,8 @@
 #include "maquina.h"
 #include "operacoes/multiplicacao.h"
 #include "operacoes/subtracao.h"
+#include "operacoes/soma.h"
+#include "operacoes/divisao.h"
 
 using namespace std;
 
@@ -55,16 +57,44 @@ void programa() {
 	do{
 		menu();
         cin >> opcao;
-        
+        dados->push_back("");
         switch(opcao){
+        	case 1:
+        		//Se dados for vazio, pega programação fixa
+        		if(dados->at(0)==""){
+        			soma::gerar(dados, &inicial, &final);
+				}
+				
+				maq = new maquina(dados, inicial, final);
+				entra("fita", &fita);
+				maq->ler(fita);
+				break;  
 			case 2:
-				subtracao::gerar(dados, &inicial, &final);
+				//Se dados for vazio, pega programação fixa
+        		if(dados->at(0)==""){
+					subtracao::gerar(dados, &inicial, &final);
+				}	
+				
 				maq = new maquina(dados, inicial, final);
 				entra("fita", &fita);
 				maq->ler(fita);
 				break;   
+			case 3:
+				//Se dados for vazio, pega programação fixa
+        		if(dados->at(0)==""){
+					divisao::gerar(dados, &inicial, &final);
+				}	
+				
+				maq = new maquina(dados, inicial, final);
+				entra("fita", &fita);
+				maq->ler(fita);
+				break; 	
 			case 4:
-				multiplicacao::gerar(dados, &inicial, &final);
+				//Se dados for vazio, pega programação fixa
+        		if(dados->at(0)==""){
+					multiplicacao::gerar(dados, &inicial, &final);
+				}		
+					
 				maq = new maquina(dados, inicial, final);
 				entra("fita", &fita);
 				maq->ler(fita);
