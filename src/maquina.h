@@ -1,8 +1,10 @@
 #include <string>
+#include <algorithm>
 #include <iostream>
 #include "estado.h"
 #include <map>
 #include <vector>
+#include "uteis/sleep.h"
 
 using namespace std;
 
@@ -37,25 +39,32 @@ maquina::maquina(vector<string> *dados, char inicial, char final) {
 }
 
 void maquina::ler(string fita){
+	fita = fita+"_____________";
+	//Acrescenta simbolo inicial caso nao houver
+	if (this->fita[0] != this->inicial)
+	{
+		fita = this->inicial + fita;
+	}
+	//Substitui os espacos por underline
+	replace( fita.begin(), fita.end(), ' ', '_');
 	this->fita = fita;
 	this->init(this->inicial, this->inicial);
 }
 
 void maquina::init(char est, char simbolo) {
+	clear_screen();
 	estado es = this->linhas[est][simbolo];
 	
 	if (es.proximoEstado == ' ')
 	{
 		cout << "Erro: estado nao encontrado";
+		system("PAUSE");
 		return;
 	}
-	
-	cout << "est= " << est << "/" << simbolo << endl;
-	cout << "dir: " << es.proximoEstado << ',' << es.escreve << ',' << es.direcaoMovimento << endl;
-	
+
 	char proxSim;
-	
 	int anterior = this->i;
+	char lido = this->fita[anterior];
 	if(es.direcaoMovimento == 'D') {
 		proxSim = this->fita[++this->i];
 	} else {
@@ -64,13 +73,34 @@ void maquina::init(char est, char simbolo) {
 	
 	this->fita[anterior] = es.escreve;
 	
+	string cabecote = "";
+	for(int j = 0; j < 20; j++) {
+		if (this->i == j)
+		{
+			cabecote += "v";
+		}
+		else
+		{
+			cabecote += " ";
+		}
+	}
 	
-	cout << "FITA: " << this->fita << endl;
+	string espaco = "";
+	for(int j = 0; j < 5; j++) {
+		cout << endl;
+		espaco += "  ";
+	}
 	
-	cout << "init: " << " = " << es.proximoEstado << '/' << proxSim << endl;
+	cout << espaco << cabecote << endl;
+	cout << espaco << this->fita << endl;
+	cout << espaco << "Estado: " << es.proximoEstado << "   Lendo: " << this->fita[this->i] << endl;
+	sleep(500); 
+	
 	if (this->fita.empty() || es.proximoEstado == 'F')
 	{
-		cout << "Sucesso: fita lida com sucesso!" << endl;
+		cout << endl << endl;
+		cout << espaco << "Sucesso: fita lida com sucesso!" << endl;
+		cout << endl << endl;
 		return;
 	}
 	

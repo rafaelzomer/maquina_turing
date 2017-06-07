@@ -1,3 +1,4 @@
+#include "uteis/clear_screen.h"
 #include <iostream>
 #include <stdlib.h>
 #include <vector>
@@ -55,12 +56,11 @@ void programa() {
 	string fita, ini, fim;
 	maquina *maq, *maq_fixa = NULL;
 	
-	
 	vector<string> *dados = new vector<string>();
 	do{
 		menu();
         cin >> opcao;
-        system("CLS"); 
+        clear_screen(); 
         switch(opcao){
         	case 1:
 				soma::gerar(dados, &inicial, &final);
@@ -114,11 +114,22 @@ void programa() {
     } while(opcao != 0);
 }
 
+void teste() {
+	char inicial = 'K';
+	char final = 'F';
+	vector<string> *dados = new vector<string>();
+
+	subtracao::gerar(dados, &inicial, &final);			
+	maquina *maq = new maquina(dados, inicial, final);
+	maq->ler("*** *");
+}
 
 int main()
 {
      //inicia o programa
-    programa();  
+//    programa();
+	//teste
+	teste();
     return 0;
 }
 
