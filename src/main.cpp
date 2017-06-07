@@ -21,6 +21,8 @@ void menu(){
 	cout << "3 - Divisao" << endl;
 	cout << "4 - Multiplicacao" << endl;
 	cout << "5 - Entrar com maquina" << endl;
+	cout << "6 - Usar maquina" << endl;
+	cout << "7 - Limpar maquina" << endl;
 	cout << "0 - Sair" << endl;
 	cout <<endl;
 }
@@ -51,61 +53,61 @@ void programa() {
 	char inicial = 'K';
 	char final = 'F';
 	string fita, ini, fim;
-	maquina *maq;
+	maquina *maq, *maq_fixa = NULL;
+	
 	
 	vector<string> *dados = new vector<string>();
 	do{
 		menu();
         cin >> opcao;
-        dados->push_back("");
+        system("CLS"); 
         switch(opcao){
         	case 1:
-        		//Se dados for vazio, pega programação fixa
-        		if(dados->at(0)==""){
-        			soma::gerar(dados, &inicial, &final);
-				}
+				soma::gerar(dados, &inicial, &final);
 				
 				maq = new maquina(dados, inicial, final);
 				entra("fita", &fita);
 				maq->ler(fita);
 				break;  
 			case 2:
-				//Se dados for vazio, pega programação fixa
-        		if(dados->at(0)==""){
-					subtracao::gerar(dados, &inicial, &final);
-				}	
-				
+        		subtracao::gerar(dados, &inicial, &final);	
+        		
 				maq = new maquina(dados, inicial, final);
 				entra("fita", &fita);
 				maq->ler(fita);
 				break;   
 			case 3:
-				//Se dados for vazio, pega programação fixa
-        		if(dados->at(0)==""){
-					divisao::gerar(dados, &inicial, &final);
-				}	
+				divisao::gerar(dados, &inicial, &final);
 				
 				maq = new maquina(dados, inicial, final);
 				entra("fita", &fita);
 				maq->ler(fita);
 				break; 	
 			case 4:
-				//Se dados for vazio, pega programação fixa
-        		if(dados->at(0)==""){
-					multiplicacao::gerar(dados, &inicial, &final);
-				}		
+				multiplicacao::gerar(dados, &inicial, &final);
 					
 				maq = new maquina(dados, inicial, final);
 				entra("fita", &fita);
 				maq->ler(fita);
 				break;
-           	case 5:
+			case 5:
               	entradados(dados);
             	entra("inicial", &ini);
             	entra("final", &fim);
-				maq = new maquina(dados, ini[0], fim[0]);
-            	entra("fita", &fita);
-	            maq->ler(fita);
+				maq_fixa = new maquina(dados, ini[0], fim[0]);
+	            break;    
+			case 6:
+				if (maq_fixa == NULL) {
+					cout << "Insira uma maquina primeiro" << endl;
+					system("PAUSE"); 
+					continue;
+				}
+				entra("fita", &fita);
+	            maq_fixa->ler(fita);
+				break;
+           	case 7:
+           		cout << "Maquina limpa" << endl;
+				maq_fixa = NULL;
 	            break;         
     	}
 		system("PAUSE"); 
