@@ -6,12 +6,12 @@ using namespace std;
 
 class divisao{
    public:
-      static void gerar(vector<string> *dados, char *inicial, char *final);
+      static void gerar(vector<string> *dados, string *inicial, string *final);
 };
 
-void divisao::gerar(vector<string> *dados, char *inicial, char *final){
-	*inicial = 'I';
-	*final = 'F';
+void divisao::gerar(vector<string> *dados, string *inicial, string *final){
+	*inicial = "I";
+	*final = "F";
 	/*
 	dados->push_back("I,I=0,I,D");
     dados->push_back("0,*=0,*,D");

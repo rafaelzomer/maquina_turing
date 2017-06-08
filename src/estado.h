@@ -4,5 +4,6 @@
 using namespace std;
 
 struct estado{
-	char proximoEstado, escreve, direcaoMovimento; 
+	string proximoEstado;
+	char escreve, direcaoMovimento; 
 };

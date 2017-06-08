@@ -6,12 +6,12 @@ using namespace std;
 
 class subtracao{
    public:
-      static void gerar(vector<string> *dados, char *inicial, char *final);
+      static void gerar(vector<string> *dados, string *inicial, string *final);
 };
 
-void subtracao::gerar(vector<string> *dados, char *inicial, char *final){
-	*inicial = '>';
-	*final = 'F';
+void subtracao::gerar(vector<string> *dados, string *inicial, string *final){
+	*inicial = ">";
+	*final = "F";
 	
 	dados->push_back(">,>=0,>,D");
     dados->push_back("0,*=0,*,D");

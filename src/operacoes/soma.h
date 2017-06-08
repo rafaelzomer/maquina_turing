@@ -6,10 +6,10 @@ using namespace std;
 
 class soma{
    public:
-      static void gerar(vector<string> *dados, char *inicial, char *final);
+      static void gerar(vector<string> *dados, string *inicial, string *final);
 };
 
-void soma::gerar(vector<string> *dados, char *inicial, char *final){
+void soma::gerar(vector<string> *dados, string *inicial, string *final){
 	*inicial = 'I';
 	*final = 'F';
 	dados->push_back("I,I=0,I,D");

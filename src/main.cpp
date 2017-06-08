@@ -24,6 +24,7 @@ void menu(){
 	cout << "5 - Entrar com maquina" << endl;
 	cout << "6 - Usar maquina" << endl;
 	cout << "7 - Limpar maquina" << endl;
+	cout << "8 - Teste" << endl;
 	cout << "0 - Sair" << endl;
 	cout <<endl;
 }
@@ -49,10 +50,34 @@ void entra(string titulo, string *fita) {
 	cin >> *fita; 
 }
 
+void teste(int num) {
+	string inicial = "";
+	string final = "";
+	vector<string> *dados = new vector<string>();
+
+	switch(num)
+	{
+		case 1:
+			soma::gerar(dados, &inicial, &final);
+			break;
+		case 2:
+			subtracao::gerar(dados, &inicial, &final);
+			break;
+		case 3:
+			divisao::gerar(dados, &inicial, &final);
+			break;
+		case 4:
+			multiplicacao::gerar(dados, &inicial, &final);
+			break;
+	}		
+	maquina *maq = new maquina(dados, inicial, final);
+	maq->ler("*** **");
+}
+
 void programa() {
 	int opcao;	
-	char inicial = 'K';
-	char final = 'F';
+	string inicial = "";
+	string final = "";
 	string fita, ini, fim;
 	maquina *maq, *maq_fixa = NULL;
 	
@@ -94,7 +119,7 @@ void programa() {
               	entradados(dados);
             	entra("inicial", &ini);
             	entra("final", &fim);
-				maq_fixa = new maquina(dados, ini[0], fim[0]);
+				maq_fixa = new maquina(dados, ini, fim);
 	            break;    
 			case 6:
 				if (maq_fixa == NULL) {
@@ -108,28 +133,21 @@ void programa() {
            	case 7:
            		cout << "Maquina limpa" << endl;
 				maq_fixa = NULL;
-	            break;         
+	            break;
+			case 8: 
+				int i;
+				cout << "Teste: ";
+				cin >> i;
+				teste(i);       
     	}
 		system("PAUSE"); 
     } while(opcao != 0);
 }
 
-void teste() {
-	char inicial = 'K';
-	char final = 'F';
-	vector<string> *dados = new vector<string>();
-
-	subtracao::gerar(dados, &inicial, &final);			
-	maquina *maq = new maquina(dados, inicial, final);
-	maq->ler("*** *");
-}
-
 int main()
 {
-     //inicia o programa
-//    programa();
-	//teste
-	teste();
+//  inicia o programa
+    programa();
     return 0;
 }
 
