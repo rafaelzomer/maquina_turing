@@ -125,7 +125,7 @@ void maquina::init(string est, char simbolo) {
 	cout << "   Lendo: " << this->fita[this->i];
 	cout << "   Escreve: " << proxEs.escreve << endl;
 	
-	sleep(50); 
+	sleep(100); 
 	
 	if (this->fita.empty() || es.proximoEstado == this->final)
 	{
