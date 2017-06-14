@@ -13,6 +13,7 @@ class maquina{
    private:
       int codigo, i = 0, repeticao = 0;
       string fita;
+      string fitaInicial;
       string nome;
       string inicial, final;
       vector<char> estados;
@@ -68,6 +69,7 @@ void maquina::ler(string fita){
 	}
 	//Substitui os espacos por underline
 	replace( fita.begin(), fita.end(), ' ', '_');
+	this->fitaInicial = fita;
 	this->fita = fita;
 	this->repeticao = 0;
 	this->init(this->inicial, this->inicial[0]);
@@ -131,6 +133,9 @@ void maquina::init(string est, char simbolo) {
 	{
 		cout << endl << endl;
 		cout << espaco << "Sucesso: fita lida com sucesso!" << endl;
+		cout << espaco << "Fita inicial: " << endl;
+		cout << espaco << this->fitaInicial << endl;
+		
 		cout << endl << endl;
 		return;
 	}

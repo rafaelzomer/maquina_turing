@@ -81,8 +81,8 @@ void programa() {
 	string fita, ini, fim;
 	maquina *maq, *maq_fixa = NULL;
 	
-	vector<string> *dados = new vector<string>();
 	do{
+		vector<string> *dados = new vector<string>();
 		menu();
         cin >> opcao;
         clear_screen(); 
